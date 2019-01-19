@@ -16,10 +16,12 @@
   flex-direction: row;
 }
 
+/* Made unnecessary color change! */
+
 .nav-item, .nav-link {
   padding: 0.5em 1.5em;
   font-size: 14px;
-  color: purple;
+  color: rgba(197, 21, 21, 0.541);
 }
 
 /*@media (max-width: 764px){
