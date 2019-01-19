@@ -1,0 +1,100 @@
+.purple-bar {
+  background: linear-gradient(267deg, #720e9e, #755bf9 50%, #7282fb);
+  color: white;
+}
+
+.navbar-brand {
+  color: #720e9e;
+  margin-right: 0px;
+  padding-right: 0px;
+  /*	float: left;
+  */
+  display: block;
+}
+
+.navbar-nav {
+  flex-direction: row;
+}
+
+.nav-item, .nav-link {
+  padding: 0.5em 1.5em;
+  font-size: 14px;
+  color: purple;
+}
+
+/*@media (max-width: 764px){
+	.form-inline {
+
+	display: flex;
+	flex: flex-start;
+	padding-left: 0;
+}
+}*/
+/*.form-inline {
+
+	display: flex;
+	flex: flex-start;
+	padding-left: 0;
+}*/
+.search-input {
+  min-width: 430px;
+  min-height: 46px;
+  border-radius: 2px;
+  border: 0.5px solid purple;
+  display: block;
+}
+
+.textpurplebar {
+  padding: 0.5em 4em;
+}
+
+.smaller {
+  font-size: 9pt;
+  padding-top: 0;
+  margin-top: 2px;
+  font-weight: lighter;
+}
+
+.bigger {
+  font-size: 14pt;
+  font-weight: bold;
+  padding-bottom: 0px;
+  margin-bottom: 2px;
+}
+
+i {
+  color: #7934f7;
+  padding: 25px;
+}
+
+button i {
+  font-weight: lighter;
+  color: white;
+  padding: 0;
+}
+
+.button {
+  background-color: #145aff;
+  min-width: 100px;
+  border-radius: 1px;
+}
+
+.searchbar {
+  overflow: hidden;
+}
+
+.signin {
+  color: #7934f7;
+  border: 2px solid #7934f7;
+  border-radius: 2px;
+  padding: 2px 15px;
+  font-size: 10pt;
+  font-weight: bold;
+  margin-left: 3em;
+}
+
+img {
+  max-width: 500px;
+}
+
+/*# sourceMappingURL=style.css.map */
