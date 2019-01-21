@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+    <script>
+    // function hello(){
+    
+    // document.querySelector("h1").innerHTML = "Hello!"
+
+    // const headings = document.querySelectorAll("h1");
+     //for (const heading of headings) {
+     //	heading.innerHTML = "Hello!";}}
+  
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelector("button").onclick = count;
+  });
+
+ let counter = 0;
+
+     function count() {
+     	counter++;
+     	document.querySelector("#counter").innerHTML = counter;
+     }
+
+
+
+
+document.querySelectorAll(‘.color-change’).forEach(function(button) {
+ button.onclick = function(){
+ 	document.querySelector('#hello').style.color = button.dataset.color;
+ };
+
+ }
+
+ arr.forEach(function(elt))
+
+
+[1,2,3,4,5].forEach(elt => console.log(elt));
+
+    </script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+<!--     <h1>Welcome!</h1>
+    <h1>Goodbye!</h1> -->
+
+    <h1 id="counter">0</h1>
+
+<button onclick="count()">Click here</button>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

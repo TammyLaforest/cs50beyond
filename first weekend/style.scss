@@ -14,8 +14,7 @@ $otherpurple: #7934f7;
 	color: $darkpurple;
 	margin-right: 0px;
 	padding-right: 0px;
-/*	float: left;
-*/  	display: block;
+	display: block;
 }
 
 .navbar-nav {
@@ -27,22 +26,6 @@ $otherpurple: #7934f7;
 	font-size: 14px;
 	color: purple;
 }
-
-
-/*@media (max-width: 764px){
-	.form-inline {
-
-	display: flex;
-	flex: flex-start;
-	padding-left: 0;
-}
-}*/
-/*.form-inline {
-
-	display: flex;
-	flex: flex-start;
-	padding-left: 0;
-}*/
 
 .search-input{
 	min-width: 430px;
