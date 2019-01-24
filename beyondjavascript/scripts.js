@@ -1,3 +1,6 @@
+// if (!localstorage.getItem('counter'))
+// 	localStorage
+
 const questions = [
     {
         question: "What is Athena's favorite animal?",
@@ -20,9 +23,22 @@ let correct = 0;
     load_question();
     document.querySelector("#numquestions").innerHTML = numquestions;
     document.querySelector("#correct").innerHTML = correct;
-
+    
 });
- 
+
+tryagain = document.getElementById("tryagain").onclick = function tryagain() 
+{
+	console.log("clicked");
+	window.location.reload(); 
+};;
+
+// tryagain.addEventListener("click", () => {  
+// 	console.log("clicked");
+// 	window.location.reload(); 
+// });
+
+
+
 function load_question() {
     
     document.querySelector("#question").innerHTML = questions[question_number].question;
@@ -63,21 +79,27 @@ function load_question() {
 		}
 		else
 		{
-			setTimeout(()=> {document.querySelector("#quizdiv").classList.add("hide");
-			document.querySelector("#winword").innerHTML = "You got " + correct + " out of " + numquestions + " right.";}, 1000);
+			setTimeout(()=> {
+			document.querySelector("#quizdiv").classList.add("hide");
 			
+			document.querySelector("#winword").innerHTML = "You got " + correct + " out of " + numquestions + " right."}, 1000);
+
+			tryagain.classList.remove("hide")
 		}
-
-
-
-}
+	}
 	  });
 };
 
 
 
 // If answer correct, increment score
-
 // move to next question after answered
-
 // When game is over, show game over screen displaying final score
+
+// If you finish the project, and are looking for other features to add, you can also consider:
+
+// - Add a “Try Again” button after the quiz is over that takes you back to the first question and resets your score.
+// - Randomize the order of the questions each time the game is played.
+// - Other features of your own choosing!
+
+
