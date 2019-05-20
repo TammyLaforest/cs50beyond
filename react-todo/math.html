@@ -21,6 +21,13 @@
 					}
 				}
 				render() {
+					if (this.state.score >= 5) {
+						return this.renderWin()
+					} else {
+						return this.renderProblem()
+					}
+				}
+				renderProblem() {
 					return (
 						<div>
 							<h1>
@@ -32,10 +39,11 @@
 								value={this.state.response}
 							/>
 							<div>Score: {this.state.score}</div>
-							<button onClick={this.decrement}>Decrement</button>
-							<button onClick={this.increment}>Increment</button>
 						</div>
 					)
+				}
+				renderWin() {
+					return <h1>Congratulations! You win!</h1>
 				}
 
 				inputKeyPress = (event) => {
