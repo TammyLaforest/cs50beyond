@@ -5,6 +5,12 @@
 		<script src="https://unpkg.com/react@15/dist/react.min.js"></script>
 		<script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
+		<title>Addition</title>
+		<style>
+			.incorrect {
+				color: red;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -17,7 +23,8 @@
 						num1: 1,
 						num2: 1,
 						score: 0,
-						response: ''
+						response: '',
+						incorrect: false
 					}
 				}
 				render() {
@@ -30,7 +37,10 @@
 				renderProblem() {
 					return (
 						<div>
-							<h1>
+							<h1
+								className={
+									this.state.incorrect ? 'incorrect' : ''
+								}>
 								{this.state.num1} + {this.state.num2}
 							</h1>
 							<input
@@ -55,10 +65,14 @@
 								score: state.score + 1,
 								num1: Math.ceil(Math.random() * 10),
 								num2: Math.ceil(Math.random() * 10),
-								response: ''
+								response: '',
+								incorrect: false
 							}))
 						} else {
-							alert('wrong')
+							this.setState((state) => ({
+								response: '',
+								incorrect: true
+							}))
 						}
 					}
 				}
