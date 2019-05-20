@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+		<script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
+	</head>
+
+	<body>
+		<div id="root"></div>
+		<script type="text/babel">
+			class Hello extends React.Component {
+				render() {
+					return (
+						<div>
+							<h1>Hello, {this.props.name}</h1>
+							<button onClick={this.handleClick}>
+								Click Here
+							</button>
+						</div>
+					)
+				}
+
+				handleClick = () => {
+					alert(`Hi! ${this.props.name}`)
+				}
+			}
+
+			class App extends React.Component {
+				render() {
+					return (
+						<div>
+							<Hello name='Julia' />
+						</div>
+					)
+				}
+			}
+
+			ReactDOM.render(<App />, document.getElementById('root'))
+		</script>
+	</body>
+</html>

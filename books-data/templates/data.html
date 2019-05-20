@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+ <main role="main" class="inner cover">
+      <h1 class="cover-heading">{% block title %}Book-Data{% endblock %}</h1>
+
+      <h1>Book a Flight</h1>
+
+         <form action="{{ url_for('books') }}" method="post">
+
+             <div class="form-group">
+                 <select class="form-control" name="books_id">
+                     {% for book in books %}
+                         <option value="{{ books.id }}">{{ books.title }} by {{ books.author }}</option>
+                     {% endfor %}
+                 </select>
+             </div>
+
+             <div class="form-group">
+                 <input class="form-control" name="name" placeholder="Passenger Name">
+             </div>
+
+             <div class="form-group">
+                 <button class="btn btn-primary">Book Flight</button>
+             </div>
+
+         </form>
+
+
+
+      {% for item in data %}
+<tr>
+    <td>{{item[0]}}</td>
+    <td>{{item[1]}}</td>
+    ...
+</tr>
+{% endfor %}
+    </main>
+{% endblock %}

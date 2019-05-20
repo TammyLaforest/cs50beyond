@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+     <main role="main" class="inner cover">
+      <h1 class="cover-heading">{% block title %}Book-Data{% endblock %}</h1>
+      <h3 class="subtitle red">Practice Python, PostreSQL, Heroku</h3>
+      <p class="lead"></p>
+
+      <p class="lead">
+        <a href="{{ url_for('all') }}" class="btn btn-lg btn-secondary btn-projects">Enter</a>
+      </p>
+
+
+             <form action="{{ url_for('books') }}" method="post">
+
+                 <div class="form-group">
+                     <select class="form-control" name="book_id">
+                         {% for book in books %}
+                             <option value="{{ book.id }}">{{ book.title }} by {{ book.author }}</option>
+                         {% endfor %}
+                     </select>
+                 </div>
+
+                 <div class="form-group">
+                     <input class="form-control" name="title" placeholder="Book Title">
+                 </div>
+
+                 <div class="form-group">
+                     <button class="btn btn-primary">Search Books</button>
+                 </div>
+
+             </form>
+
+
+
+          {% for item in data %}
+    <tr>
+        <td>{{item[0]}}</td>
+        <td>{{item[1]}}</td>
+        ...
+    </tr>
+    {% endfor %}
+
+{% endblock %}
