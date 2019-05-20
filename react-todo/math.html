@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+		<script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
+	</head>
+
+	<body>
+		<div id="root"></div>
+		<script type="text/babel">
+			class MathProblem extends React.Component {
+				constructor(props) {
+					super(props)
+					this.state = {
+						num1: 1,
+						num2: 1,
+						score: 0,
+						response: ''
+					}
+				}
+				render() {
+					return (
+						<div>
+							<h1>
+								{this.state.num1} + {this.state.num2}
+							</h1>
+							<input
+								onKeyPress={this.inputKeyPress}
+								onChange={this.updateResponse}
+								value={this.state.response}
+							/>
+							<div>Score: {this.state.score}</div>
+							<button onClick={this.decrement}>Decrement</button>
+							<button onClick={this.increment}>Increment</button>
+						</div>
+					)
+				}
+
+				inputKeyPress = (event) => {
+					if (event.key === 'Enter') {
+						const answer = parseInt(this.state.response)
+
+						if (answer === this.state.num1 + this.state.num2) {
+							this.setState((state) => ({
+								score: state.score + 1,
+								num1: Math.ceil(Math.random() * 10),
+								num2: Math.ceil(Math.random() * 10),
+								response: ''
+							}))
+						} else {
+							alert('wrong')
+						}
+					}
+				}
+
+				updateResponse = (event) => {
+					this.setState({
+						response: event.target.value
+					})
+				}
+			}
+
+			class App extends React.Component {
+				render() {
+					return (
+						<div>
+							<MathProblem />
+						</div>
+					)
+				}
+			}
+
+			ReactDOM.render(<App />, document.getElementById('root'))
+		</script>
+	</body>
+</html>
