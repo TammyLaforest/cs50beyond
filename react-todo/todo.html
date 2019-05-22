@@ -12,6 +12,7 @@
 		<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 		<title>Todo</title>
 	</head>
+
 	<body>
 		<div id="app"></div>
 		<script type="text/babel">
@@ -28,9 +29,15 @@
 					return (
 						<div>
 							<h1>Tasks</h1>
+							<h2>{this.state.tasks.length}</h2>
 							<ul>
 								{this.state.tasks.map((task, i) => (
-									<li key={i}>{task}</li>
+									<li key={i}>
+										{task}{' '}
+										<button onClick={this.removeTask}>
+											delete
+										</button>
+									</li>
 								))}
 							</ul>
 							<div>
@@ -38,7 +45,10 @@
 									onChange={this.handleChange}
 									value={this.state.input}
 								/>
-								<button onClick={this.addTask}>Add Task</button>
+								<button onClick={this.addTask}>
+									{' '}
+									Add Task
+								</button>
 							</div>
 						</div>
 					)
@@ -52,12 +62,22 @@
 
 				addTask = () => {
 					this.setState((state) => ({
-						tasks: [...state.tasks, state.input]
+						tasks: [...state.tasks, state.input],
+
+						input: ''
+					}))
+				}
+				removeTask = () => {
+					this.setState((state) => ({
+						// tasks: [...state.tasks, state.input],
+						input: ''
 					}))
 				}
 			}
-
 			ReactDOM.render(<App />, document.querySelector('#app'))
 		</script>
 	</body>
 </html>
+
+<!-- 
+// delete task by clicking button next to each -->
