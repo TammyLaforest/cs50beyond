@@ -33,8 +33,12 @@
 							<ul>
 								{this.state.tasks.map((task, i) => (
 									<li key={i}>
-										{task}{' '}
-										<button onClick={this.removeTask}>
+										{task} //{' '}
+										<button
+											// 	onClick={() => this.deleteTask(i)}>
+
+											data-index={i}
+											onClick={this.deleteTask}>
 											delete
 										</button>
 									</li>
@@ -67,11 +71,22 @@
 						input: ''
 					}))
 				}
-				removeTask = () => {
-					this.setState((state) => ({
-						// tasks: [...state.tasks, state.input],
-						input: ''
-					}))
+
+				// deleteTask = (index) => {
+				// 	this.setState((state) => {
+				// 		const tasks = [...this.state.tasks]
+				// 		tasks.splice(index, 1)
+				// 		return { tasks: tasks }
+				// 	})
+				// }
+
+				deleteTask = (event) => {
+					const index = event.target.dataset.index
+					this.setState((state) => {
+						const tasks = [...this.state.tasks]
+						tasks.splice(index, 1)
+						return { tasks: tasks }
+					})
 				}
 			}
 			ReactDOM.render(<App />, document.querySelector('#app'))
