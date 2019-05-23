@@ -33,26 +33,85 @@
 		<script type="text/babel">
 			class CardEditor extends React.Component {
 				render() {
-					return <div>This is the editor</div>
+					const rows = this.props.cards.map((card, i) => {
+						return (
+							<tr key={i}>
+								<td>{card.front}</td>
+								<td>{card.back}</td>
+								<td>
+									<button>Delete</button>
+								</td>
+							</tr>
+						)
+					})
+					return (
+						<div>
+							<h2>Card Editor</h2>
+							<table>
+								<thead>
+									<tr>
+										<td>Front</td>
+										<td>Back</td>
+										<td>Delete</td>
+									</tr>
+								</thead>
+								<tbody>{rows}</tbody>
+							</table>
+							<hr />
+							<button onClick={this.props.switchMode}>
+								Go to viewer
+							</button>
+						</div>
+					)
 				}
 			}
 			class CardViewer extends React.Component {
 				render() {
-					return <div>This is the viewer</div>
-				}
-			}
-
-			class App extends React.Component {
-				render() {
 					return (
 						<div>
-							<CardEditor />
-							<CardViewer />
+							This is the viewer
+							<hr />
+							<button onClick={this.props.switchMode}>
+								Go to editor
+							</button>
 						</div>
 					)
 				}
 			}
 
+			class App extends React.Component {
+				constructor(props) {
+					super(props)
+					this.state = {
+						editor: true,
+						// Lifting state up
+						cards: []
+					}
+				}
+				render() {
+					if (this.state.editor) {
+						return (
+							<div>
+								<CardEditor
+									cards={this.state.cards}
+									switchMode={this.switchMode}
+								/>
+							</div>
+						)
+					} else
+						return (
+							<div>
+								<CardViewer switchMode={this.switchMode} />
+							</div>
+						)
+				}
+
+				switchMode = () => {
+					this.setState((state) => ({
+						editor: !state.editor
+					}))
+				}
+			}
 			ReactDOM.render(<App />, document.querySelector('#app'))
 		</script>
 	</body>
