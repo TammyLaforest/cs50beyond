@@ -50,13 +50,17 @@
 							<table>
 								<thead>
 									<tr>
-										<td>Front</td>
-										<td>Back</td>
-										<td>Delete</td>
+										<th>Front</th>
+										<th>Back</th>
+										<th>Delete</th>
 									</tr>
 								</thead>
 								<tbody>{rows}</tbody>
 							</table>
+							<br />
+							<input name='front' placeholder='front of card' />
+							<input name='back' placeholder='back of card' />
+							<button>Add Card</button>
 							<hr />
 							<button onClick={this.props.switchMode}>
 								Go to viewer
@@ -85,7 +89,10 @@
 					this.state = {
 						editor: true,
 						// Lifting state up
-						cards: []
+						cards: [
+							{ front: 'test front', back: 'test back' },
+							{ front: 'test 2 front', back: 'test 2 back' }
+						]
 					}
 				}
 				render() {
