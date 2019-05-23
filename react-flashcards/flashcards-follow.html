@@ -113,16 +113,34 @@
 				constructor(props) {
 					super(props)
 					this.state = {
-						front: true
+						front: true,
+						currentCard: 0
 					}
 				}
 				render() {
-					const card = this.props.cards.map((card, i) => {
+					const cardFront = this.props.cards.map((card, i) => {
 						return (
 							<tr key={i}>
 								<td>{card.front}</td>
 								<td>
-									<button>Flip</button>
+									<button onClick={this.flipMode}>
+										Flip
+									</button>
+								</td>
+								<td>
+									<button>Learned</button>
+								</td>
+							</tr>
+						)
+					})
+					const cardBack = this.props.cards.map((card, i) => {
+						return (
+							<tr key={i}>
+								<td>{card.back}</td>
+								<td>
+									<button onClick={this.flipMode}>
+										Flip
+									</button>
 								</td>
 								<td>
 									<button>Learned</button>
@@ -137,13 +155,25 @@
 								<table>
 									<thead>
 										<tr>
-											<th>Card</th>
+											<th>Question</th>
 											<th>Flip</th>
 											<th>Learned</th>
 										</tr>
 									</thead>
-									<tbody>{card[0]}</tbody>
+									<tbody>
+										{cardFront[this.state.currentCard]}
+									</tbody>
 								</table>
+								<hr />
+								<button onClick={this.lastCard}>
+									Last Card
+								</button>
+								<button onClick={this.nextCard}>
+									Next Card
+								</button>
+								<button onClick={this.props.switchMode}>
+									Go to editor
+								</button>
 							</div>
 						)
 					} else
@@ -152,44 +182,56 @@
 								<table>
 									<thead>
 										<tr>
-											<th>Card</th>
+											<th>Answer</th>
 											<th>Flip</th>
 											<th>Learned</th>
 										</tr>
 									</thead>
-									<tbody>{card}</tbody>
+									<tbody>
+										{cardBack[this.state.currentCard]}
+									</tbody>
 								</table>
+								<hr />
+								<button onClick={this.lastCard}>
+									Last Card
+								</button>
+								<button onClick={this.nextCard}>
+									Next Card
+								</button>
+								<button onClick={this.props.switchMode}>
+									Go to editor
+								</button>
 							</div>
 						)
 				}
+				flipMode = () => {
+					this.setState((state) => ({
+						front: !state.front
+					}))
+				}
+				nextCard = () => {
+					if (this.state.currentCard >= this.props.cards.length - 1) {
+						this.setState((state) => ({
+							currentCard: 0
+						}))
+					} else {
+						this.setState((state) => ({
+							currentCard: state.currentCard + 1
+						}))
+					}
+				}
+				lastCard = () => {
+					if (this.state.currentCard === 0) {
+						this.setState((state) => ({
+							currentCard: this.props.cards.length - 1
+						}))
+					} else {
+						this.setState((state) => ({
+							currentCard: state.currentCard - 1
+						}))
+					}
+				}
 			}
-
-			// 	render() {
-
-			//                  const flipped = (card) => if (this.state.front)  return (<tbody>{card[0]}</tbody>)}
-			// 					else { return (<tbody>{card[0]}</tbody>)}
-			// 		return (
-
-			// 				<h2>Card Editor</h2>
-			// 				<table>
-			// 					<thead>
-			// 						<tr>
-			// 							<th>Card</th>
-			// 							<th>Flip</th>
-			// 							<th>Learned</th>
-			// 						</tr>
-			// 					</thead>)
-
-			//                          return(</table>
-
-			// 				<hr />
-			// 				<button onClick={this.props.switchMode}>
-			// 					Go to editor
-			// 				</button>
-
-			// 		)
-			// 	}
-			// }
 
 			class App extends React.Component {
 				constructor(props) {
@@ -251,11 +293,9 @@
 	</body>
 </html>
 
-<!-- viewing flashcards, clicking to flip them over
-display front of card one 
-
-then flip to back 
-state? Front or Back
+<!-- 
+    
+   
 
 button to move to next flashcard
 state? which card are you currently on?
