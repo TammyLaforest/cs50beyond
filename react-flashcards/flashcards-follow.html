@@ -28,6 +28,7 @@
 			}
 		</style>
 	</head>
+
 	<body>
 		<div id="app"></div>
 		<script type="text/babel">
@@ -109,18 +110,86 @@
 				}
 			}
 			class CardViewer extends React.Component {
+				constructor(props) {
+					super(props)
+					this.state = {
+						front: true
+					}
+				}
 				render() {
-					return (
-						<div>
-							This is the viewer
-							<hr />
-							<button onClick={this.props.switchMode}>
-								Go to editor
-							</button>
-						</div>
-					)
+					const card = this.props.cards.map((card, i) => {
+						return (
+							<tr key={i}>
+								<td>{card.front}</td>
+								<td>
+									<button>Flip</button>
+								</td>
+								<td>
+									<button>Learned</button>
+								</td>
+							</tr>
+						)
+					})
+
+					if (this.state.front) {
+						return (
+							<div>
+								<table>
+									<thead>
+										<tr>
+											<th>Card</th>
+											<th>Flip</th>
+											<th>Learned</th>
+										</tr>
+									</thead>
+									<tbody>{card[0]}</tbody>
+								</table>
+							</div>
+						)
+					} else
+						return (
+							<div>
+								<table>
+									<thead>
+										<tr>
+											<th>Card</th>
+											<th>Flip</th>
+											<th>Learned</th>
+										</tr>
+									</thead>
+									<tbody>{card}</tbody>
+								</table>
+							</div>
+						)
 				}
 			}
+
+			// 	render() {
+
+			//                  const flipped = (card) => if (this.state.front)  return (<tbody>{card[0]}</tbody>)}
+			// 					else { return (<tbody>{card[0]}</tbody>)}
+			// 		return (
+
+			// 				<h2>Card Editor</h2>
+			// 				<table>
+			// 					<thead>
+			// 						<tr>
+			// 							<th>Card</th>
+			// 							<th>Flip</th>
+			// 							<th>Learned</th>
+			// 						</tr>
+			// 					</thead>)
+
+			//                          return(</table>
+
+			// 				<hr />
+			// 				<button onClick={this.props.switchMode}>
+			// 					Go to editor
+			// 				</button>
+
+			// 		)
+			// 	}
+			// }
 
 			class App extends React.Component {
 				constructor(props) {
@@ -128,7 +197,11 @@
 					this.state = {
 						editor: true,
 						// Lifting state up
-						cards: []
+						cards: [
+							{ front: 'testcard1', back: 'testback1' },
+							{ front: 'testcard2', back: 'testback2' },
+							{ front: 'testcard3', back: 'testback3' }
+						]
 					}
 				}
 				render() {
@@ -146,7 +219,10 @@
 					} else
 						return (
 							<div>
-								<CardViewer switchMode={this.switchMode} />
+								<CardViewer
+									cards={this.state.cards}
+									switchMode={this.switchMode}
+								/>
 							</div>
 						)
 				}
@@ -174,3 +250,16 @@
 		</script>
 	</body>
 </html>
+
+<!-- viewing flashcards, clicking to flip them over
+display front of card one 
+
+then flip to back 
+state? Front or Back
+
+button to move to next flashcard
+state? which card are you currently on?
+
+other things: 
+button to shuffle
+marking cards as learned or not -->
