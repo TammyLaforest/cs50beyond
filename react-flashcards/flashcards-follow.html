@@ -46,7 +46,11 @@
 								<td>{card.front}</td>
 								<td>{card.back}</td>
 								<td>
-									<button>Delete</button>
+									<button
+										data-index={i}
+										onClick={this.deleteCard}>
+										Delete
+									</button>
 								</td>
 							</tr>
 						)
@@ -77,7 +81,7 @@
 								value={this.state.back}
 								onChange={this.handleChange}
 							/>
-							<button>Add Card</button>
+							<button onClick={this.addCard}>Add Card</button>
 							<hr />
 							<button onClick={this.props.switchMode}>
 								Go to viewer
@@ -90,6 +94,18 @@
 					this.setState({
 						[event.target.name]: event.target.value
 					})
+				}
+
+				addCard = () => {
+					this.props.addCard(this.state.front, this.state.back)
+					this.setState({
+						front: '',
+						back: ''
+					})
+				}
+
+				deleteCard = (event) => {
+					this.props.deleteCard(event.target.dataset.index)
 				}
 			}
 			class CardViewer extends React.Component {
@@ -112,10 +128,7 @@
 					this.state = {
 						editor: true,
 						// Lifting state up
-						cards: [
-							{ front: 'test front', back: 'test back' },
-							{ front: 'test 2 front', back: 'test 2 back' }
-						]
+						cards: []
 					}
 				}
 				render() {
@@ -125,6 +138,8 @@
 								<CardEditor
 									cards={this.state.cards}
 									switchMode={this.switchMode}
+									addCard={this.addCard}
+									deleteCard={this.deleteCard}
 								/>
 							</div>
 						)
@@ -141,7 +156,20 @@
 						editor: !state.editor
 					}))
 				}
+				addCard = (front, back) => {
+					this.setState((state) => ({
+						cards: [...state.cards, { front: front, back: back }]
+					}))
+				}
+				deleteCard = (index) => {
+					this.setState((state) => {
+						const cards = [...state.cards]
+						cards.splice(index, 1)
+						return { cards: cards }
+					})
+				}
 			}
+
 			ReactDOM.render(<App />, document.querySelector('#app'))
 		</script>
 	</body>
