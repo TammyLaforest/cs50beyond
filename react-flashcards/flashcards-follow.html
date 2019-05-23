@@ -32,6 +32,13 @@
 		<div id="app"></div>
 		<script type="text/babel">
 			class CardEditor extends React.Component {
+				constructor(props) {
+					super(props)
+					this.state = {
+						front: '',
+						back: ''
+					}
+				}
 				render() {
 					const rows = this.props.cards.map((card, i) => {
 						return (
@@ -58,8 +65,18 @@
 								<tbody>{rows}</tbody>
 							</table>
 							<br />
-							<input name='front' placeholder='front of card' />
-							<input name='back' placeholder='back of card' />
+							<input
+								name='front'
+								placeholder='front of card'
+								value={this.state.front}
+								onChange={this.handleChange}
+							/>
+							<input
+								name='back'
+								placeholder='back of card'
+								value={this.state.back}
+								onChange={this.handleChange}
+							/>
 							<button>Add Card</button>
 							<hr />
 							<button onClick={this.props.switchMode}>
@@ -67,6 +84,12 @@
 							</button>
 						</div>
 					)
+				}
+
+				handleChange = (event) => {
+					this.setState({
+						[event.target.name]: event.target.value
+					})
 				}
 			}
 			class CardViewer extends React.Component {
